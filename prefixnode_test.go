@@ -23,7 +23,7 @@ func TestNew(t *testing.T) {
 
 	for _, test := range tests {
 
-		node := prefixnode.New(test.char)
+		node := prefix.NewNode(test.char)
 
 		//Check Character
 		if node.GetChar() != test.char {
@@ -45,16 +45,16 @@ func TestNew(t *testing.T) {
 }
 
 func TestAddChild(t *testing.T) {
-	node := prefixnode.New('a')
+	node := NewNode('a')
 	//Insert child
-	child := prefixnode.New('b')
+	child := NewNode('b')
 	result := node.AddChild(&child)
 	if result != true {
 		t.Errorf("Expected insertion of %v and return value of true.", child)
 	}
 
 	//Test duplicate insertion
-	child1 := prefixnode.New('b')
+	child1 := NewNode('b')
 	result1 := node.AddChild(&child1)
 	if result1 != false {
 		t.Errorf("Expected insertion to be invalid for %v", child1)
@@ -62,9 +62,9 @@ func TestAddChild(t *testing.T) {
 }
 
 func TestGetChild(t *testing.T) {
-	node := prefixnode.New('a')
+	node := NewNode('a')
 	//Insert child
-	child := prefixnode.New('b')
+	child := NewNode('b')
 	node.AddChild(&child)
 
 	//
@@ -80,7 +80,7 @@ func TestGetChild(t *testing.T) {
 	}
 
 	node = child
-	child1 := prefixnode.New('c')
+	child1 := NewNode('c')
 	node.AddChild(&child1)
 
 	result2 := node.GetChild('c')
@@ -91,7 +91,7 @@ func TestGetChild(t *testing.T) {
 }
 
 func TestAddUser(t *testing.T) {
-	node := prefixnode.New('a')
+	node := NewNode('a')
 
 	node.AddUser("Test")
 	fmt.Print("hello")

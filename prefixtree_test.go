@@ -3,12 +3,10 @@ package prefixtree_test
 import (
 	"fmt"
 	"testing"
-
-	"github.com/ablades/relevantreddit/tries/prefixtree"
 )
 
 func TestNew(t *testing.T) {
-	tree := prefixtree.New("Test")
+	tree := prefix.NewTree("Test")
 
 	//Check Name
 	if tree.GetName() != "Test" {
@@ -28,7 +26,7 @@ func TestNew(t *testing.T) {
 }
 
 func TestInsertKeyword(t *testing.T) {
-	tree := prefixtree.New("Test")
+	tree := prefix.NewTree("Test")
 
 	tree.InsertKeyword("apple", "becky")
 
@@ -36,7 +34,7 @@ func TestInsertKeyword(t *testing.T) {
 }
 
 func TestPrintTrie(t *testing.T) {
-	tree := prefixtree.New("Test")
+	tree := prefix.NewTree("Test")
 	tree.InsertKeyword("pear", "becky")
 	tree.InsertKeyword("able", "karen")
 	tree.InsertKeyword("bear", "susan")
