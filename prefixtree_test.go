@@ -3,6 +3,8 @@ package prefixtree_test
 import (
 	"fmt"
 	"testing"
+
+	"github.com/ablades/prefix"
 )
 
 func TestNew(t *testing.T) {

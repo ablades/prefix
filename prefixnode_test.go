@@ -3,6 +3,8 @@ package prefixnode_test
 import (
 	"fmt"
 	"testing"
+
+	"github.com/ablades/prefix"
 )
 
 //test creation of a node object
@@ -45,16 +47,16 @@ func TestNew(t *testing.T) {
 }
 
 func TestAddChild(t *testing.T) {
-	node := NewNode('a')
+	node := prefix.NewNode('a')
 	//Insert child
-	child := NewNode('b')
+	child := prefix.NewNode('b')
 	result := node.AddChild(&child)
 	if result != true {
 		t.Errorf("Expected insertion of %v and return value of true.", child)
 	}
 
 	//Test duplicate insertion
-	child1 := NewNode('b')
+	child1 := prefix.NewNode('b')
 	result1 := node.AddChild(&child1)
 	if result1 != false {
 		t.Errorf("Expected insertion to be invalid for %v", child1)
@@ -62,9 +64,9 @@ func TestAddChild(t *testing.T) {
 }
 
 func TestGetChild(t *testing.T) {
-	node := NewNode('a')
+	node := prefix.NewNode('a')
 	//Insert child
-	child := NewNode('b')
+	child := prefix.NewNode('b')
 	node.AddChild(&child)
 
 	//
@@ -80,7 +82,7 @@ func TestGetChild(t *testing.T) {
 	}
 
 	node = child
-	child1 := NewNode('c')
+	child1 := prefix.NewNode('c')
 	node.AddChild(&child1)
 
 	result2 := node.GetChild('c')
@@ -91,7 +93,7 @@ func TestGetChild(t *testing.T) {
 }
 
 func TestAddUser(t *testing.T) {
-	node := NewNode('a')
+	node := prefix.NewNode('a')
 
 	node.AddUser("Test")
 	fmt.Print("hello")
