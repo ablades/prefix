@@ -1,14 +1,12 @@
-package prefixnode_test
+package prefix
 
 import (
 	"fmt"
 	"testing"
-
-	"github.com/ablades/prefix"
 )
 
 //test creation of a node object
-func TestNew(t *testing.T) {
+func TestNewNode(t *testing.T) {
 
 	var tests = []struct {
 		char rune // input
@@ -25,7 +23,7 @@ func TestNew(t *testing.T) {
 
 	for _, test := range tests {
 
-		node := prefix.NewNode(test.char)
+		node := NewNode(test.char)
 
 		//Check Character
 		if node.GetChar() != test.char {
@@ -47,16 +45,16 @@ func TestNew(t *testing.T) {
 }
 
 func TestAddChild(t *testing.T) {
-	node := prefix.NewNode('a')
+	node := NewNode('a')
 	//Insert child
-	child := prefix.NewNode('b')
+	child := NewNode('b')
 	result := node.AddChild(&child)
 	if result != true {
 		t.Errorf("Expected insertion of %v and return value of true.", child)
 	}
 
 	//Test duplicate insertion
-	child1 := prefix.NewNode('b')
+	child1 := NewNode('b')
 	result1 := node.AddChild(&child1)
 	if result1 != false {
 		t.Errorf("Expected insertion to be invalid for %v", child1)
@@ -64,9 +62,9 @@ func TestAddChild(t *testing.T) {
 }
 
 func TestGetChild(t *testing.T) {
-	node := prefix.NewNode('a')
+	node := NewNode('a')
 	//Insert child
-	child := prefix.NewNode('b')
+	child := NewNode('b')
 	node.AddChild(&child)
 
 	//
@@ -82,7 +80,7 @@ func TestGetChild(t *testing.T) {
 	}
 
 	node = child
-	child1 := prefix.NewNode('c')
+	child1 := NewNode('c')
 	node.AddChild(&child1)
 
 	result2 := node.GetChild('c')
@@ -93,7 +91,7 @@ func TestGetChild(t *testing.T) {
 }
 
 func TestAddUser(t *testing.T) {
-	node := prefix.NewNode('a')
+	node := NewNode('a')
 
 	node.AddUser("Test")
 	fmt.Print("hello")
