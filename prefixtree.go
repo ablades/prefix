@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//PrefixTree for nodes
+//Tree holds references to nodes
 type Tree struct {
 	Name string
 	Root *Node
@@ -36,15 +36,10 @@ func (tree Tree) InsertKeyword(word string, userName string) {
 			fmt.Printf("%v \n", node)
 			tree.Size++
 		}
-
 		//Child already exists advance pointer
 		node = node.GetChild(char)
 	}
-	//fmt.Printf("%+v \n", node.)
-	fmt.Printf("%c \n", node.GetChar())
 	node.AddUser(userName)
-	//fmt.Println(node.GetUsers())
-
 }
 
 //Contains returns list of users associated with word
@@ -57,7 +52,6 @@ func (tree Tree) Contains(word string) []string {
 			node = node.GetChild(char)
 		}
 	}
-	//fmt.Printf("%s", node.GetUsers())
 	return node.GetUsers()
 }
 
@@ -86,7 +80,6 @@ func (tree Tree) PrintTrie() []string {
 	tree.traverse(tree.Root, "", &words)
 
 	return words
-
 }
 
 //traverse the tree

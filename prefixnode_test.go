@@ -38,9 +38,7 @@ func TestNewNode(t *testing.T) {
 		if len(node.GetUsers()) != 0 {
 			t.Errorf("Expected users number of users %v, found %v users instead.", 0, node.GetUsers())
 		}
-
 	}
-
 }
 
 func TestAddChild(t *testing.T) {
@@ -86,7 +84,6 @@ func TestGetChild(t *testing.T) {
 	if result2 != &child1 {
 		t.Errorf("Expected node, got %v instead", result2)
 	}
-
 }
 
 func TestAddUser(t *testing.T) {
