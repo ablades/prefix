@@ -2,32 +2,32 @@ package prefix
 
 //Node in the trie
 type Node struct {
-	Char     rune
-	Children map[rune]*Node
-	Users    []string
+	char     rune
+	children map[rune]*Node
+	users    *[]string
 }
 
 //NewNode creates a n with character and terminal value
 func NewNode(char rune) Node {
 
 	n := Node{
-		Char:     char,
-		Children: make(map[rune]*Node),
-		Users:    make([]string, 0),
+		char:     char,
+		children: make(map[rune]*Node),
+		users:    &[]string{},
 	}
 
 	return n
 }
 
-//GetChar associated with n
+//GetChar associated with node
 func (n Node) GetChar() rune {
-	return n.Char
+	return n.char
 }
 
 //HasChild if n has child with given rune value
 func (n Node) HasChild(char rune) bool {
 
-	_, found := n.Children[char]
+	_, found := n.children[char]
 
 	if found {
 		return true
@@ -38,11 +38,11 @@ func (n Node) HasChild(char rune) bool {
 //AddChild Node to parents children
 func (n Node) AddChild(child *Node) bool {
 
-	if n.HasChild(child.Char) {
+	if n.HasChild(child.char) {
 		return false
 	}
 	//Add Node
-	n.Children[child.Char] = child
+	n.children[child.char] = child
 
 	return true
 }
@@ -50,7 +50,7 @@ func (n Node) AddChild(child *Node) bool {
 //GetChild Returns a pointer to child object
 func (n Node) GetChild(char rune) *Node {
 	if n.HasChild(char) {
-		return n.Children[char]
+		return n.children[char]
 	}
 
 	return nil
@@ -58,15 +58,15 @@ func (n Node) GetChild(char rune) *Node {
 
 //GetChildren of a given n
 func (n Node) GetChildren() map[rune]*Node {
-	return n.Children
+	return n.children
 }
 
 //AddUser to usernames
 func (n Node) AddUser(name string) {
-	n.Users = append(n.Users, name)
+	*n.users = append(*n.users, name)
 }
 
-//GetUsers for a given n
+//GetUsers for a given node
 func (n Node) GetUsers() []string {
-	return n.Users
+	return *n.users
 }

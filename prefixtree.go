@@ -5,17 +5,17 @@ import (
 )
 
 //PrefixTree for nodes
-type PrefixTree struct {
+type Tree struct {
 	Name string
 	Root *Node
 	Size int
 }
 
 //NewTree tree with a default root node
-func NewTree(name string) PrefixTree {
+func NewTree(name string) Tree {
 	rootNode := NewNode('0')
 
-	tree := PrefixTree{
+	tree := Tree{
 		Name: name,
 		Root: &rootNode,
 		Size: 0,
@@ -25,7 +25,7 @@ func NewTree(name string) PrefixTree {
 }
 
 //InsertKeyword TODO: Replace USER STRING WITH USER OBJECT
-func (tree PrefixTree) InsertKeyword(word string, userName string) {
+func (tree Tree) InsertKeyword(word string, userName string) {
 	node := tree.Root
 
 	for _, char := range word {
@@ -40,15 +40,15 @@ func (tree PrefixTree) InsertKeyword(word string, userName string) {
 		//Child already exists advance pointer
 		node = node.GetChild(char)
 	}
-	fmt.Printf("%v \n", node)
+	//fmt.Printf("%+v \n", node.)
 	fmt.Printf("%c \n", node.GetChar())
 	node.AddUser(userName)
-	fmt.Println(node.GetUsers())
+	//fmt.Println(node.GetUsers())
 
 }
 
 //Contains returns list of users associated with word
-func (tree PrefixTree) Contains(word string) []string {
+func (tree Tree) Contains(word string) []string {
 	node := tree.Root
 
 	//Loop until end of word is hit
@@ -57,29 +57,29 @@ func (tree PrefixTree) Contains(word string) []string {
 			node = node.GetChild(char)
 		}
 	}
-	fmt.Printf("%v", node.GetUsers())
+	//fmt.Printf("%s", node.GetUsers())
 	return node.GetUsers()
 }
 
 //Getters and setters
 
 //GetName returns the name of the tree
-func (tree PrefixTree) GetName() string {
+func (tree Tree) GetName() string {
 	return tree.Name
 }
 
 //GetSize returns size of current tree
-func (tree PrefixTree) GetSize() int {
+func (tree Tree) GetSize() int {
 	return tree.Size
 }
 
 //GetRoot returns rootnode in a tree
-func (tree PrefixTree) GetRoot() *Node {
+func (tree Tree) GetRoot() *Node {
 	return tree.Root
 }
 
 //PrintTrie all words
-func (tree PrefixTree) PrintTrie() []string {
+func (tree Tree) PrintTrie() []string {
 	var words []string
 
 	//traverse through a tree
@@ -90,7 +90,7 @@ func (tree PrefixTree) PrintTrie() []string {
 }
 
 //traverse the tree
-func (tree PrefixTree) traverse(node *Node, currentString string, list *[]string) {
+func (tree Tree) traverse(node *Node, currentString string, list *[]string) {
 	//if users then we've hit a terminal character
 	if len(node.GetUsers()) > 0 {
 		*list = append(*list, currentString)

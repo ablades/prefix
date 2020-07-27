@@ -30,7 +30,7 @@ func TestInsertKeyword(t *testing.T) {
 
 	tree.InsertKeyword("apple", "becky")
 
-	print(tree.Contains("apple"))
+	//fmt.Println(tree.Contains("apple"))
 }
 
 func TestPrintTrie(t *testing.T) {
@@ -50,7 +50,7 @@ func TestPrintTrie(t *testing.T) {
 	for _, test := range testCases {
 
 		if fmt.Sprintf("%v", test.strings) != fmt.Sprintf("%v", test.expected) {
-			t.Errorf("Expected %v got %v instead", test.expected, test.strings)
+			t.Errorf("Expected %s got %s instead", test.expected, test.strings)
 		}
 	}
 }

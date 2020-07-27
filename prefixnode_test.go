@@ -1,7 +1,6 @@
 package prefix
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -94,8 +93,16 @@ func TestAddUser(t *testing.T) {
 	node := NewNode('a')
 
 	node.AddUser("Test")
-	fmt.Print("hello")
-	t.Log("Hello")
 	t.Log(node.GetUsers())
 
+	if len(node.GetUsers()) != 1 {
+		t.Errorf("Expected size of 1, got size %v instead", len(node.GetUsers()))
+	}
+
+	testSlice := []string{"Test"}
+	for i := range node.GetUsers() {
+		if node.GetUsers()[i] != testSlice[i] {
+			t.Errorf("Value: %v From Users  and %v from testSlice do not match", node.GetUsers()[i], testSlice[i])
+		}
+	}
 }
