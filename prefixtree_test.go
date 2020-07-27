@@ -1,7 +1,7 @@
 package prefix
 
 import (
-	"fmt"
+	"sort"
 	"testing"
 )
 
@@ -30,7 +30,7 @@ func TestInsertKeyword(t *testing.T) {
 
 	tree.InsertKeyword("apple", "becky")
 
-	//fmt.Println(tree.Contains("apple"))
+	//afmt.Println(tree.Contains("apple"))
 }
 
 func TestPrintTrie(t *testing.T) {
@@ -39,18 +39,13 @@ func TestPrintTrie(t *testing.T) {
 	tree.InsertKeyword("able", "karen")
 	tree.InsertKeyword("bear", "susan")
 	tree.InsertKeyword("mamale", "getrude")
+	testSlice := []string{"able", "bear", "mamale", "pear"}
+	trieElements := tree.PrintTrie()
+	sort.Strings(trieElements)
 
-	var testCases = []struct {
-		strings  []string
-		expected []string
-	}{
-		{tree.PrintTrie(), []string{"pear", "able", "bear", "mamale"}},
-	}
-
-	for _, test := range testCases {
-
-		if fmt.Sprintf("%v", test.strings) != fmt.Sprintf("%v", test.expected) {
-			t.Errorf("Expected %s got %s instead", test.expected, test.strings)
+	for i := range testSlice {
+		if testSlice[i] != trieElements[i] {
+			t.Errorf("Slices do not contain same elements %v != %v", trieElements[i], testSlice[i])
 		}
 	}
 }
